@@ -40,6 +40,12 @@ class RepairOrder(models.Model):
             moves = self.env["stock.move"].search([("repair_id", "=", rec.id)])
             if not moves:
                 continue
+            # FIXME: The stock moves creation is handled inside super and can't be
+            # easily customized via a hook,
+            # odoo creates an internal move for the repaired product where source and
+            # destination locations are identical, which appears unnecessary.
+            # We remove such moves after creation
+            moves.filtered(lambda m: m.location_id == m.location_dest_id).unlink()
             picking = self.env["stock.picking"].create(
                 {
                     "picking_type_id": rec.warehouse_id.repair_consumption_picking_type_id.id,

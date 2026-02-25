@@ -81,6 +81,7 @@ class TestRepairStockConsumptionStep(TransactionCase):
         self.assertTrue(self.repair.consumption_picking_id)
         moves = self.env["stock.move"].search([("repair_id", "=", self.repair.id)])
         pick = self.repair.consumption_picking_id
+        self.assertNotIn(self.product, pick.move_ids.product_id)
         self.assertTrue(moves)
         self.assertEqual(pick.move_ids, moves)
         self.assertSetEqual(set(moves.mapped("state")), {"assigned"})
