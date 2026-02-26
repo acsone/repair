@@ -49,6 +49,7 @@ class RepairOrder(models.Model):
                 }
             )
             moves.picking_id = picking.id
+            moves._do_unreserve()
             moves._action_confirm()
             moves._action_assign()
             moves.move_line_ids.picking_id = picking.id
