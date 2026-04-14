@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="repair_order_form_view">
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='extra_info']//group/field[@name='invoiced']"
+                position="after"
+            >
+                <field name="quotation_sent" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
