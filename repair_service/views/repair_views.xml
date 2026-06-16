@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="repair.view_repair_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[@name='parts']" position="after">
-                <page string="Services">
+                <page name="repair_service" string="Services">
                     <field
                         name="repair_service_ids"
                         readonly="state in ('cancel', 'done')"

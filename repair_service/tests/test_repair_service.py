@@ -11,7 +11,7 @@ class TestRepairOrderFlow(TransactionCase):
         self.SaleOrder = self.env["sale.order"]
         self.Product = self.env["product.product"]
         self.Uom = self.env["uom.uom"]
-
+        self.test_partner = self.env["res.partner"].create({"name": "test partner"})
         # Create a test service product
         self.service_product = self.Product.create(
             {
@@ -25,7 +25,7 @@ class TestRepairOrderFlow(TransactionCase):
         self.repair_order = self.RepairOrder.create(
             {
                 "name": "Test Repair Order",
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": self.test_partner.id,
             }
         )
 
